@@ -7,6 +7,9 @@ import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 import MouseOverPopover from './MouseOverPopover';
 
+//Cloudmersive 
+var CloudmersiveVirusApiClient = require('cloudmersive-virus-api-client');
+
 //CSS
 const useStyles = theme => ({
   root: {
@@ -71,17 +74,15 @@ class Attachments extends React.Component{
     }
 
     //fetches email attachments through 
-    getAttachmentsInfo = async () => {
-      
+    getAttachmentsInfo = async () => {   
       var item = Office.context.mailbox.item;
       var fileNameArray = [];
       var numberOfFiles = 0;
-      var score = 0;
+      var score = 100;
       let self = this;
 
       //checks if email contains attachments
-      if(item.attachments.length < 1){
-        score = 100;
+      if(item.attachments.length < 1){ 
         self.setState({
           attachmentScore: score,
         });
@@ -97,7 +98,43 @@ class Attachments extends React.Component{
             if(!attachment.isInline){
               numberOfFiles++;
               fileNameArray.push(attachment.name);
-            }
+                }
+               
+                var CloudmersiveVirusApiClient = require('cloudmersive-virus-api-client');
+
+                var defaultClient = CloudmersiveVirusApiClient.ApiClient.instance;
+
+                // Configure API key authorization: Apikey
+                var Apikey = defaultClient.authentications['Apikey'];
+                Apikey.apiKey = "2c2b2abe-4a5d-4719-bb4e-c71e25f8eb34"
+                // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+                //Apikey.apiKeyPrefix['Apikey'] = "Token"
+                 
+                var api = new CloudmersiveVirusApiClient.ScanApi()
+
+                var inputFile = attachment; // {File} Input file to perform the operation on.
+                 
+                var callback = function (error, data, response) {
+                    if (error) {
+                        console.error(error);
+                    } else {
+                        console.log('API called successfully. Returned data: ' + data); 
+                    }
+                };
+                var xhr = (api.scanFile(inputFile, callback)).xhr;
+                var result = true;
+                xhr.onload = () => {
+                    const data = xhr.responseText
+
+                    // log response
+                    result = JSON.parse(data).CleanResult;
+                }
+
+                if (result == false) {
+                    score = 0;
+                }
+
+
             }
         }
       

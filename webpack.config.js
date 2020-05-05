@@ -27,7 +27,12 @@ module.exports = async (env, options)  => {
       extensions: [".ts", ".tsx", ".html", ".js"]
     },
     module: {
-      rules: [
+        rules: [
+            {
+                parser: {
+                    amd: false
+                }
+            },
         {
           test: /\.jsx?$/,
           use: [
