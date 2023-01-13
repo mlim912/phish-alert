@@ -6,6 +6,14 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 import MouseOverPopover from './MouseOverPopover';
+import ArrowBackIosRoundedIcon from '@material-ui/icons/KeyboardBackspace';
+import Breadcrumbs from '@material-ui/core/Breadcrumbs'; 
+import IconButton from '@material-ui/core/IconButton';
+import HomeIcon from '@material-ui/icons/Home';
+import TreeView from '@material-ui/lab/TreeView';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import TreeItem from '@material-ui/lab/TreeItem';
 
 //CSS
 const useStyles = theme => ({
@@ -17,7 +25,8 @@ const useStyles = theme => ({
     maxWidth: '85%',
     marginTop: '.6em',
     backgroundColor: 'WhiteSmoke',
-    wordBreak: 'break-all',
+      wordBreak: 'break-all',
+      borderRadius: 5
   },
   cards:{
     maxHeight: '40em',
@@ -30,11 +39,13 @@ const useStyles = theme => ({
   popover: {
     pointerEvents: 'none',
   },
-  flexContainer: {
-    display: 'flex',
-    justifyContent: 'left',
-    justifyContent: 'space-between',
-  },
+    flexContainer: {
+        display: 'flex',
+        justifyContent: 'left',
+        justifyContent: 'space-between',
+        marginTop: '1em',
+        maxWidth: '90%'
+    },
   prosentOnBar:{
     width: '90%',
     backgroundColor: 'lightgrey',
@@ -46,7 +57,8 @@ const useStyles = theme => ({
   bar:{
     width: '1%',
     height: '30px',
-    backgroundColor: 'green',
+      backgroundColor: 'green',
+      borderRadius: 3
   },
   linkList:{
     maxHeight: '5.3em',
@@ -318,14 +330,10 @@ class Links extends React.Component {
       var elem = document.getElementById(text);
       var width = c;
       elem.style.width = "100%";
-        if(width <= 25){
-          elem.style.backgroundColor = "red";
-        } else if(width > 25 && width <= 50){
-          elem.style.backgroundColor = "OrangeRed";
-        } else if(width > 50 && width <= 75){
-          elem.style.backgroundColor = "orange";
+        if(width <= 75){
+            elem.style.backgroundColor = "#e91e63"; 
         } else if(width > 75){
-          elem.style.backgroundColor = "green";
+            elem.style.backgroundColor = "#009688";
       }
     }
 
@@ -352,135 +360,154 @@ class Links extends React.Component {
     render(){
       const { classes } = this.props;
     return (
-      <div className={classes.root}>
-      <div className={classes.cards}>
-      <Typography variant="h6" component="h3">
-        Links in email
-        </Typography>
-    <Paper className={classes.card}>
-    <div className={classes.flexContainer}>
-        <div>
-        <Typography variant="h6" component="h3">
-        Link-Sender relation
-        </Typography>
-        </div>
-        <div>
-        <MouseOverPopover tekst="Legitimate websites usually have their company name in their display name, email domain and links.
+        <div className={classes.root}>
+            <Breadcrumbs aria-label="breadcrumb">
+                <IconButton className={classes.button} component={Link} to="/" size='small'>
+                    <HomeIcon fontSize="inherit" />
+                </IconButton>
+                <Typography style={{ fontWeight: 'bold', m: 1, color: 'black' }} color="Black">Links</Typography>
+            </Breadcrumbs>
+
+      <div className={classes.cards}>  
+                <div className={classes.card}>
+                    <div className={classes.flexContainer}>
+                        <div>
+                            <Typography variant="h6" component="h3">
+                                Evaluation
+                            </Typography>
+                        </div>
+                        <div>
+                            <MouseOverPopover tekst="A total evaluation of the links found in the email. The prosent is an average of all the attributes
+        where url encoding, redirection and duplication is rated less significant than link-sender relation and link security."/>
+                        </div>
+                    </div>
+                    <div className={classes.prosentOnBar}>
+                        <div className={classes.bar} id="bar_6"><p><b>{this.state.totVal}%</b></p></div>
+                    </div>
+                    <p>
+                        Total evaluation of link(s) in this email
+                    </p>
+                </div>
+
+                <div className={classes.card}>
+                    <Typography variant="h6" component="h6">
+                        Here's why:
+                    </Typography>
+                    <TreeView
+                        className={classes.root}
+                        defaultCollapseIcon={<ExpandMoreIcon />}
+                        defaultExpandIcon={<ChevronRightIcon />}
+                    >
+                        <TreeItem nodeId="1" label="Link-Sender relation">
+                            <div className={classes.flexContainer}>
+                                <div>
+                                    <Typography variant="h6" component="h3">
+                                        Link-Sender relation
+                                    </Typography>
+                                </div>
+                                <div>
+                                    <MouseOverPopover tekst="Legitimate websites usually have their company name in their display name, email domain and links.
         If not it is probably someone trying to imitate the company."/>
-        </div>
-        </div>
-        <div className={classes.prosentOnBar}>
-          <div className={classes.bar} id="bar_1"><p><b>{this.state.linkScore}%</b></p></div>
-        </div>
-        <p>
-          Display Name:<br/> <b>{this.state.displayName}</b>
-        </p>
-        <p>
-          Email Address:<br/> <b>{this.state.emailAdr}</b>
-        </p>
-        <p>Distinct Link hostname(s):</p>
-        <div className={classes.linkList}>
-          {this.state.linkArray.map(item => (
-          <ul key={item}><b>{item}</b></ul>
-          ))}
-          </div>
-        <p>Similarity: <b>{this.state.nameSimilarity}</b></p>
-    </Paper>
-    <Paper className={classes.card}>
-    <div className={classes.flexContainer}>
-        <div>
-        <Typography variant="h6" component="h3">
-        URL Encoding
-        </Typography>
-        </div>
-        <div>
-        <MouseOverPopover tekst="URL encoding replaces unsafe ASCII characters with a % followed by two hexadecimal digits.
+                                </div>
+                            </div>
+                            <div  >
+                                <div  id="bar_1"><p> Score: <b>{this.state.linkScore}%</b></p></div>
+                            </div>
+                            <p>
+                                Display Name:<br /> <b>{this.state.displayName}</b>
+                            </p>
+                            <p>
+                                Email Address:<br /> <b>{this.state.emailAdr}</b>
+                            </p>
+                            <p>Distinct Link hostname(s):</p>
+                            <div className={classes.linkList}>
+                                {this.state.linkArray.map(item => (
+                                    <ul key={item}><b>{item}</b></ul>
+                                ))}
+                            </div>
+                            <p>Similarity: <b>{this.state.nameSimilarity}</b></p>
+                        </TreeItem>
+
+                        <TreeItem nodeId="2" label="URL Encoding">
+                            <div className={classes.flexContainer}>
+                                <div>
+                                    <Typography variant="h6" component="h3">
+                                        URL Encoding
+                                    </Typography>
+                                </div>
+                                <div>
+                                    <MouseOverPopover tekst="URL encoding replaces unsafe ASCII characters with a % followed by two hexadecimal digits.
         This makes it hard to read and can be used to hide the true location of a link. It is quite common both for legitimate and phishing email.
         Therefore, the prosent bar is valued lower in the evaluation calculation."/>
-        </div>
-        </div>
-        <div className={classes.prosentOnBar}>
-          <div className={classes.bar} id="bar_2"><p><b>{this.state.linkEncodeScore}%</b></p></div>
-        </div>
-        <p><b>{this.state.numEncoding}</b> of <b>{this.state.numLinks}</b> link(s) contains url encoding</p>
-    </Paper>
-    <Paper className={classes.card}>
-    <div className={classes.flexContainer}>
-        <div>
-        <Typography variant="h6" component="h3">
-        Link Security
-        </Typography>
-        </div>
-        <div>
-        <MouseOverPopover tekst="Hypertext Transfer Protocol Secure (HTTPS) is an extension of the Hypertext Transfer Protocol (HTTP). 
+                                </div>
+                            </div>
+                            <div>
+                                <div id="bar_2"><p>Score: <b>{this.state.linkEncodeScore}%</b></p></div>
+                            </div>
+                            <p><b>{this.state.numEncoding}</b> of <b>{this.state.numLinks}</b> link(s) contains url encoding</p>
+                        </TreeItem>
+
+                        <TreeItem nodeId="3" label="Link Security">
+                            <div className={classes.flexContainer}>
+                                <div>
+                                    <Typography variant="h6" component="h3">
+                                        Link Security
+                                    </Typography>
+                                </div>
+                                <div>
+                                    <MouseOverPopover tekst="Hypertext Transfer Protocol Secure (HTTPS) is an extension of the Hypertext Transfer Protocol (HTTP). 
         It is used for secure communication over a computer network, and is widely used on the Internet. 
         If a link does not use https, it is seen as unsafe."/>
-        </div>
-        </div>
-        <div className={classes.prosentOnBar}>
-          <div className={classes.bar} id="bar_3"><p><b>{this.state.linkHttpsScore}%</b></p></div>
-        </div>
-          <p><b>{this.state.linksHTTPS}</b> of <b>{this.state.numLinks}</b> link(s) have https (SSL)</p>
-    </Paper>
-    <Paper className={classes.card}>
-    <div className={classes.flexContainer}>
-        <div>
-        <Typography variant="h6" component="h3">
-        Redirecting Links
-        </Typography>
-        </div>
-        <div>
-        <MouseOverPopover tekst="Some links contains redirection. 
+                                </div>
+                            </div>
+                            <div  >
+                                <div  id="bar_3"><p>Score: <b>{this.state.linkHttpsScore}%</b></p></div>
+                            </div>
+                            <p><b>{this.state.linksHTTPS}</b> of <b>{this.state.numLinks}</b> link(s) have https (SSL)</p>
+                        </TreeItem>
+
+                        <TreeItem nodeId="4" label="Redirecting Links">
+                            <div className={classes.flexContainer}>
+                                <div>
+                                    <Typography variant="h6" component="h3">
+                                        Redirecting Links
+                                    </Typography>
+                                </div>
+                                <div>
+                                    <MouseOverPopover tekst="Some links contains redirection. 
         This means that instead of the link taking you to a legitimate webpage, the link redirects to somewhere else."/>
-        </div>
-        </div>
-        <div className={classes.prosentOnBar}>
-          <div className={classes.bar} id="bar_4"><p><b>{this.state.linkRedirectScore}%</b></p></div>
-        </div>
-          <p><b>{this.state.numRedirect}</b> of <b>{this.state.numLinks}</b> link(s) contains redirection</p>
-          <p>Ex of redirection in URL: /redirect?z=</p>
-    </Paper>
-    <Paper className={classes.card}>
-    <div className={classes.flexContainer}>
-        <div>
-        <Typography variant="h6" component="h3">
-        Duplication of Links
-        </Typography>
-        </div>
-        <div>
-        <MouseOverPopover tekst="Most phishing emails will contain duplications of a url link.
+                                </div>
+                            </div>
+                            <div  >
+                                <div id="bar_4"><p>Score: <b>{this.state.linkRedirectScore}%</b></p></div>
+                            </div>
+                            <p><b>{this.state.numRedirect}</b> of <b>{this.state.numLinks}</b> link(s) contains redirection</p>
+                            <p>Ex of redirection in URL: /redirect?z=</p>
+                        </TreeItem>
+
+                        <TreeItem nodeId="5" label="Duplication of Links">
+                            <div className={classes.flexContainer}>
+                                <div>
+                                    <Typography variant="h6" component="h3">
+                                        Duplication of Links
+                                    </Typography>
+                                </div>
+                                <div>
+                                    <MouseOverPopover tekst="Most phishing emails will contain duplications of a url link.
          This is sometimes the scenario for legitimate emails too.
          Therefore, the prosent bar is valued lower in the evaluation calculation."/>
-        </div>
-        </div>
-        <div className={classes.prosentOnBar}>
-          <div className={classes.bar} id="bar_5"><p><b>{this.state.linkDuplicateScore}%</b></p></div>
-        </div>
-          <p><b>{this.state.duplicateLinks}</b> of <b>{this.state.numLinks}</b> link(s) are the same</p>
-    </Paper>
-    <Paper className={classes.card}>
-    <div className={classes.flexContainer}>
-        <div>
-        <Typography variant="h6" component="h3">
-        Evaluation
-        </Typography>
-        </div>
-        <div>
-        <MouseOverPopover tekst="A total evaluation of the links found in the email. The prosent is an average of all the attributes
-        where url encoding, redirection and duplication is rated less significant than link-sender relation and link security."/>
-        </div>
-        </div>
-        <div className={classes.prosentOnBar}>
-          <div className={classes.bar} id="bar_6"><p><b>{this.state.totVal}%</b></p></div>
-        </div>
-        <p>
-          Total evaluation of link(s) in this email
-        </p>
-    </Paper>
-    </div>
-    <Button variant="contained" color="primary" className={classes.button} component={Link} to="/">
-    Go back
-  </Button>
+                                </div>
+                            </div>
+                            <div >
+                                <div id="bar_5"><p>Score: <b>{this.state.linkDuplicateScore}%</b></p></div>
+                            </div>
+                            <p><b>{this.state.duplicateLinks}</b> of <b>{this.state.numLinks}</b> link(s) are the same</p>
+                        </TreeItem>
+                    </TreeView>
+                </div>
+                 
+     
+    </div> 
     </div>
 );
 }

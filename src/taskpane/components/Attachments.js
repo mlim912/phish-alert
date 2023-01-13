@@ -6,6 +6,15 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 import MouseOverPopover from './MouseOverPopover';
+import ArrowBackIosRoundedIcon from '@material-ui/icons/KeyboardBackspace';
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import IconButton from '@material-ui/core/IconButton';
+import HomeIcon from '@material-ui/icons/Home';
+
+import TreeView from '@material-ui/lab/TreeView';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import TreeItem from '@material-ui/lab/TreeItem';
 
 //Cloudmersive 
 var CloudmersiveVirusApiClient = require('cloudmersive-virus-api-client');
@@ -20,7 +29,8 @@ const useStyles = theme => ({
     maxWidth: '85%',
     marginTop: '.6em',
     backgroundColor: 'WhiteSmoke',
-    wordBreak: 'break-all',
+      wordBreak: 'break-all',
+      borderRadius: 5
   },
   cards:{
     maxHeight: '40em',
@@ -33,11 +43,13 @@ const useStyles = theme => ({
   popover: {
     pointerEvents: 'none',
   },
-  flexContainer: {
-    display: 'flex',
-    justifyContent: 'left',
-    justifyContent: 'space-between',
-  },
+    flexContainer: {
+        display: 'flex',
+        justifyContent: 'left',
+        justifyContent: 'space-between',
+        marginTop: '1em',
+        maxWidth: '90%'
+    },
   prosentOnBar:{
     width: '90%',
     backgroundColor: 'lightgrey',
@@ -49,7 +61,8 @@ const useStyles = theme => ({
   bar:{
     width: '1%',
     height: '30px',
-    backgroundColor: 'green',
+      backgroundColor: 'green',
+      borderRadius: 3
   },
   fileList:{
     maxHeight: '8em',
@@ -138,7 +151,7 @@ class Attachments extends React.Component{
             }
         }
       
-      self.setState({
+      self.setState({ 
         nameOfFilesArray: fileNameArray,
         numFiles: numberOfFiles,
       });
@@ -152,14 +165,10 @@ class Attachments extends React.Component{
         var elem = document.getElementById(text);
         var width = c;
       elem.style.width = "100%";
-          if(width <= 25){
-            elem.style.backgroundColor = "red";
-          } else if(width > 25 && width <= 50){
-            elem.style.backgroundColor = "OrangeRed";
-          } else if(width > 50 && width <= 75){
-            elem.style.backgroundColor = "orange";
+          if(width <= 75){
+              elem.style.backgroundColor = "#e91e63"; 
           } else if(width > 75){
-            elem.style.backgroundColor = "green";
+              elem.style.backgroundColor = "#009688";
         }
       }
 
@@ -180,63 +189,68 @@ class Attachments extends React.Component{
       const { classes } = this.props;
     return (
         <div className={classes.root}>
-          <div className={classes.cards}>
-          <Typography variant="h6" component="h3">
-            Attachments
-            </Typography>
-        <Paper className={classes.card}>
-        <div className={classes.flexContainer}>
-            <div>
-            <Typography variant="h6" component="h3">
-            Attached files
-            </Typography>
-            </div>
-            <div>
-            <MouseOverPopover tekst="Displays all files that are attached to the email."/>
-            </div>
-            </div>
-            <div className={classes.prosentOnBar}>
-              <div className={classes.bar} id="bar_1"><p><b>{this.state.attachmentScore}%</b></p></div>
-            </div>
-            <p>Number of files: <b>{this.state.numFiles}</b></p>
-            <p>File names:</p>
-            <div className={classes.fileList}>
-          {this.state.nameOfFilesArray.map(item => (
-          <ul key={item}><b>{item}</b></ul>
-          ))}
-          </div>
-        </Paper>
-        <Paper className={classes.card}>
-        <div className={classes.flexContainer}>
-            <div>
-            <Typography variant="h6" component="h3">
-            Evaluation
-            </Typography>
-            </div>
-            <div>
-            <MouseOverPopover tekst="A total evaluation of the attributes found in email attachments.
+            <Breadcrumbs aria-label="breadcrumb">
+                <IconButton className={classes.button} component={Link} to="/" size='small'>
+                    <HomeIcon fontSize="inherit" />
+                </IconButton>
+                <Typography style={{ fontWeight: 'bold', m: 1, color: 'black' }} color="Black">Attachments</Typography>
+            </Breadcrumbs>
+            <div className={classes.cards}>
+ 
+                
+                <div className={classes.card}>
+                    <div className={classes.flexContainer}>
+                        <div>
+                            <Typography variant="h6" component="h3">
+                                Evaluation
+                            </Typography>
+                        </div>
+                        <div>
+                            <MouseOverPopover tekst="A total evaluation of the attributes found in email attachments.
             The score is an average of the attributes."/>
-            </div>
-            </div>
-            <div className={classes.prosentOnBar}>
-              <div className={classes.bar} id="bar_2"><p><b>{this.state.totVal}%</b></p></div>
-            </div>
-            <p>
-            If an email contains attachments, 
-            a percent of <b>0</b> is given. If not, a score of <b>100</b> is given.
-            One should be careful opening attachments,
-            espescially if a low score is given on other email attributes aswell.
-            </p>
-            <p>
-            <b>ALWASY</b> double check email information before opening the attachemment(s). 
-            If the file type or the file name seems out of context or suspicious then,
-            <b> DO NOT</b> open the attachement(s).
-            </p>
-        </Paper>
+                        </div>
+                    </div>
+
+                    <div className={classes.prosentOnBar}>
+                        <div className={classes.bar} id="bar_1"><p><b>{this.state.attachmentScore}%</b></p></div>
+                    </div> 
+                </div>
+                <div className={classes.card}>
+                    <Typography variant="h6" component="h6">
+                        Here's why:
+                    </Typography>
+                <TreeView
+                    className={classes.root}
+                    defaultCollapseIcon={<ExpandMoreIcon />}
+                    defaultExpandIcon={<ChevronRightIcon />}
+                >
+                    <TreeItem nodeId="1" label="Attachments">
+                        <div className={classes.flexContainer}>
+                            <div>
+                                <Typography variant="h6" component="h3">
+                                    Attached files
+                                </Typography>
+                            </div>
+                            <div>
+                                <MouseOverPopover tekst="Displays all files that are attached to the email. If any of the files scanned is found to be malicious, an immediate score of <b>0</b> will be given to this attribute." />
+                            </div>
+                        </div> 
+                        <p>Number of files: <b>{this.state.numFiles}</b></p>
+                        <p>File names:</p>
+                        <div className={classes.fileList}>
+                            {this.state.nameOfFilesArray.map(item => (
+                                <ul key={item}><b>{item}</b></ul>
+                            ))}
+                        </div>
+                    </TreeItem>
+                    
+                </TreeView>
+                </div>
+        
+         
+        
         </div>
-        <Button variant="contained" color="primary" className={classes.button} component={Link} to="/">
-        Go back
-      </Button>
+            
         </div>
     );
     }

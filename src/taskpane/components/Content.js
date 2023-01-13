@@ -3,13 +3,28 @@ import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import { Link } from 'react-router-dom';
+import Button from '@material-ui/core/Button'; 
 import spamWordData from './spamWordData.json';
 import MouseOverPopover from './MouseOverPopover'
+import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
+import ArrowBackIosRoundedIcon from '@material-ui/icons/ArrowBackIosRounded';
+import TreeView from '@material-ui/lab/TreeView';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import TreeItem from '@material-ui/lab/TreeItem';
+import AccountBoxIcon from '@material-ui/icons/AccountBox';
+import TextFormatIcon from '@material-ui/icons/TextFormat'; 
+import FindInPageIcon from '@material-ui/icons/FindInPage';
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import { Link } from 'react-router-dom';
+import IconButton from '@material-ui/core/IconButton';
+import HomeIcon from '@material-ui/icons/Home';
 
 //CSS
 const useStyles = theme => ({
+    wrapIcon: {
+        marginBottom: '-.2em'
+    },
   root: {
     paddingLeft: '1em',
   },
@@ -18,7 +33,8 @@ const useStyles = theme => ({
     maxWidth: '85%',
     marginTop: '.6em',
     backgroundColor: 'WhiteSmoke',
-    wordBreak: 'break-all',
+      wordBreak: 'break-all',
+      borderRadius: 5
   },
   cards:{
     maxHeight: '40em',
@@ -26,16 +42,18 @@ const useStyles = theme => ({
     paddingLeft: '.1em',
   },
   button: {
-    margin: theme.spacing(1, 0),
+      margin: theme.spacing(1, 0), 
   },
   popover: {
     pointerEvents: 'none',
   },
-  flexContainer: {
-    display: 'flex',
-    justifyContent: 'left',
-    justifyContent: 'space-between',
-  },
+    flexContainer: {
+        display: 'flex',
+        justifyContent: 'left',
+        justifyContent: 'space-between',
+        marginTop: '1em',
+        maxWidth: '90%'
+    },
   prosentOnBar:{
     width: '90%',
     backgroundColor: 'lightgrey',
@@ -47,13 +65,20 @@ const useStyles = theme => ({
   bar:{
     width: '1%',
     height: '30px',
-    backgroundColor: 'green',
+      backgroundColor: 'green',
+      borderRadius: 3
   },
   phishingWordList:{
-    maxHeight: '4em',
+    maxHeight: '10em',
     overflowY: 'auto',
   }
 });
+
+function handleClick(event) {
+    event.preventDefault();
+    console.info('You clicked a breadcrumb.');
+}
+
 
 class Content extends React.Component {
     constructor(props) {
@@ -200,14 +225,10 @@ class Content extends React.Component {
       var elem = document.getElementById(text);
       var width = c;
       elem.style.width = "100%";
-        if(width <= 25){
-          elem.style.backgroundColor = "red";
-        } else if(width > 25 && width <= 50){
-          elem.style.backgroundColor = "OrangeRed";
-        } else if(width > 50 && width <= 75){
-          elem.style.backgroundColor = "orange";
+        if(width <= 75){
+            elem.style.backgroundColor = "#e91e63"; 
         } else if(width > 75){
-          elem.style.backgroundColor = "green";
+            elem.style.backgroundColor = "#009688";
       }
     }
 
@@ -236,79 +257,88 @@ class Content extends React.Component {
       const { classes } = this.props;
     return (
         <div className={classes.root}>
+            <Breadcrumbs aria-label="breadcrumb">
+                <IconButton className={classes.button} component={Link} to="/" size='small'>
+                    <HomeIcon fontSize="inherit" />
+                </IconButton> 
+                <Typography style={{ fontWeight: 'bold', m: 1, color: 'black' }}  color="Black">Content</Typography>
+            </Breadcrumbs>
+
           <div className={classes.cards}>
-          <Typography variant="h6" component="h3">
-            Message Content
-            </Typography>
-          
-        <Paper className={classes.card}>
-          <div className={classes.flexContainer}>
-            <div>
-            <Typography variant="h6" component="h3">
-            Receiver
-            </Typography>
-            </div>
-            <div>
-            <MouseOverPopover tekst="Phishing emails are usually anonymous and does not address the receiver. 
-            They usually do not contain any proof of relation such as knowing the name of the receiver."/>
-            </div>
-            </div>
-            <div className={classes.prosentOnBar}>
-              <div className={classes.bar} id="bar_1"><p><b>{this.state.receiverScore}%</b></p></div>
-            </div>
-            <p>
-              Surname or last name of <b>{this.state.displayName}</b>, was metioned <b>{this.state.nameCount}</b> time in this email.
-            </p>
-        </Paper>
-        <Paper className={classes.card}>
-        <div className={classes.flexContainer}>
-            <div>
-            <Typography variant="h6" component="h3">
-            Phishing words
-            </Typography>
-            </div>
-            <div>
-            <MouseOverPopover tekst="It is very common that emails containing certain words related
-             to urgency, fear, username/password changes or 
-             economic loss/gain is some sort phishing email trying to get your personal information."/>
-            </div>
-            </div>
-            <div className={classes.prosentOnBar}>
-              <div className={classes.bar} id="bar_2"><p><b>{this.state.dictScore}%</b></p></div>
-            </div>
-            <p>
-                Phishing words found: <b>{this.state.spamWordCount}</b>
-            </p>
-            <p>Words:</p>
-            <div className={classes.phishingWordList}>
-              {this.state.list.map(item => (
-                <ul key={item}><b>{item}</b></ul>
-              ))}
-            </div>
-        </Paper>
-        <Paper className={classes.card}>
-        <div className={classes.flexContainer}>
-            <div>
-            <Typography variant="h6" component="h3">
-            Evaluation
-            </Typography>
-            </div>
-            <div>
-            <MouseOverPopover tekst="A total evaluation of the attributes found in email content.
+                <div className={classes.card}>
+                    
+                    <div className={classes.flexContainer}>
+                        <div>
+                            <Typography variant="h6" component="h3">
+                                Evaluation
+                            </Typography>
+                        </div>
+                        <div>
+                            <MouseOverPopover tekst="A total evaluation of the attributes found in email content.
             The score is an average of the attributes."/>
+                        </div>
+                    </div>
+                    <div className={classes.prosentOnBar}>
+                        <div className={classes.bar} id="bar_4"><p><b>{this.state.totVal}%</b></p></div>
+                    </div>
+                    <p>
+                        Total evaluation in prosent
+                    </p>
+                
             </div>
-            </div>
-            <div className={classes.prosentOnBar}>
-              <div className={classes.bar} id="bar_4"><p><b>{this.state.totVal}%</b></p></div>
-            </div>
-            <p>
-              Total evaluation in prosent
-            </p>
-        </Paper>
-        </div>
-        <Button variant="contained" color="primary" className={classes.button} component={Link} to="/">
-        Go back
-      </Button>
+
+                <div className={classes.card}>
+                    <Typography variant="h6" component="h6">
+                        Here's why:
+                    </Typography>
+
+                <TreeView
+                    className={classes.root}
+                    defaultCollapseIcon={<ExpandMoreIcon />}
+                    defaultExpandIcon={<ChevronRightIcon />}
+                >
+                        <TreeItem nodeId="1" label="Receiver">
+                             
+                        <div className={classes.flexContainer}>
+                            <div>
+                                <Typography variant="h7" component="h7">
+                                    <AccountBoxIcon className={classes.wrapIcon} />  Your name
+                                </Typography>
+                            </div>
+                            <div>
+                                <MouseOverPopover tekst="Phishing emails are usually anonymous and does not address the receiver. 
+            They usually do not contain any proof of relation such as knowing the name of the receiver."/>
+                            </div>
+                        </div>
+                         
+                        <p>
+                            Surname or last name of <b>{this.state.displayName}</b>, was metioned <b>{this.state.nameCount}</b> time in this email.
+                        </p>
+                    </TreeItem>
+                    <TreeItem nodeId="5" label="Phishing Words">
+                        <div className={classes.flexContainer}>
+                            <div>
+                                <Typography variant="h7" component="h7">
+                                    <FindInPageIcon className={classes.wrapIcon} />  We found <b>{this.state.spamWordCount}</b> phishing words.
+                                </Typography>
+                            </div>
+                            <div>
+                                <MouseOverPopover className={classes.wrapIcon} tekst="It is very common that emails containing certain words related
+             to urgency, fear, username/password changes or
+             economic loss/gain is some sort phishing email trying to get your personal information."/>
+                            </div>
+                        </div>
+                        <p>Phishing words found:</p>
+                        <div className={classes.phishingWordList}>
+                            {this.state.list.map(item => (
+                                <p key={item}>{item}</p>
+                            ))}
+                        </div>
+                    </TreeItem>
+                </TreeView>
+               </div>
+           </div>
+         
         </div>
     );
     }

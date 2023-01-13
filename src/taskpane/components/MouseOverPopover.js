@@ -8,13 +8,12 @@ import { isConstructorDeclaration } from 'typescript';
 //CSS
 const useStyles = makeStyles(theme => ({
   popover: {
-    pointerEvents: 'none',
-    zIndex: -1,
+    pointerEvents: 'none', 
   },
   paper: {
     padding: theme.spacing(1),
-    zIndex: -1,
-    maxWidth: '18em',
+    zIndex: 0,
+      maxWidth: '15em',
   },
 }));
 
@@ -39,7 +38,7 @@ export default function MouseOverPopover(props) {
         aria-haspopup="true"
         onMouseEnter={handlePopoverOpen}
         onMouseLeave={handlePopoverClose}
-        color="primary"
+              color="action"
         />
       <Popover
         id="mouse-over-popover"

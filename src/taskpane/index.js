@@ -12,7 +12,7 @@ initializeIcons();
 
 let isOfficeInitialized = false;
 
-const title = "Anti Phishing";
+const title = "Phish Alert";
 
 const render = Component => {
   ReactDOM.render(
@@ -28,7 +28,9 @@ const render = Component => {
 /* Render application after Office initializes */
 Office.initialize = () => {
   isOfficeInitialized = true;
-  render(App);
+    render(App);
+    mailboxItem.notificationMessages.addAsync( { type: 'errorMessage', message: 'Blocked words have been found in the body of this email.' });
+   
 };
 
 /* Initial render showing a progress bar */

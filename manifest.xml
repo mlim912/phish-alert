@@ -4,8 +4,8 @@
   <Version>1.0.0.0</Version>
   <ProviderName>Contoso</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
-  <DisplayName DefaultValue="Anti Phishing"/>
-  <Description DefaultValue="Anti email phishing add-in"/>
+  <DisplayName DefaultValue="Phish Alert"/>
+  <Description DefaultValue="Add-in to Thwart Email Phishing Attack"/>
   <IconUrl DefaultValue="https://localhost:3000/assets/icon-32.png"/>
   <HighResolutionIconUrl DefaultValue="https://localhost:3000/assets/icon-80.png"/>
   <SupportUrl DefaultValue="https://www.contoso.com/help"/>

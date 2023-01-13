@@ -1,13 +1,12 @@
 {
   "ExpandedNodes": [
     "",
-    "\\assets",
+    "\\dist",
     "\\figures",
     "\\src",
     "\\src\\commands",
     "\\src\\taskpane",
     "\\src\\taskpane\\components"
   ],
-  "SelectedNode": "\\manifest.xml",
   "PreviewInSolutionExplorer": false
 }

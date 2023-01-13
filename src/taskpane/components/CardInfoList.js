@@ -116,25 +116,7 @@ class CardInfoLIst extends React.Component {
         <Button size="small" color="primary" component={Link} to="/links">Learn More</Button>
       </CardActions>
       </CardActionArea>
-    </Card>
-
-    <Card className={classes.card}>
-          <CardActionArea>
-      <CardContent>
-        <Typography variant="h6" component="h6">
-          Authentication
-        </Typography>
-        <br />
-        <Typography variant="body2" component="p">
-          Email security protocols.
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small" color="primary" component={Link} to="/authentication">Learn More</Button>
-      </CardActions>
-      </CardActionArea>
-    </Card>
-
+    </Card> 
     <Card className={classes.card}>
           <CardActionArea>
       <CardContent>
