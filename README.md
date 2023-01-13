@@ -12,7 +12,7 @@ npm i
 ```
 npm run dev-server
 ```
-4. Go to https://outlook.office.com/mail/
+4. Go to https://outlook.office.com/mail/ . Sign into your account.
 
 6. Open any email and click on the three dots 
 <img width="646" alt="image" src="https://user-images.githubusercontent.com/73040083/212260961-e4d49aeb-dc4f-4f80-8b3e-86b3959622e1.png">
