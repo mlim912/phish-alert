@@ -4,7 +4,7 @@
 ```
 git clone https://github.com/mlim912/phish-alert.git 
 ```
-2. Open Visual Studio code. Make sure you're in the right directory, open the terminal and install Node Modules by entering the following line to the terminal.
+2. Open Visual Studio code. Make sure you're in the right directory and you have Node installed in your computer, open the terminal and install Node Modules by entering the following line to the terminal.
 ```
 npm i 
 ```
