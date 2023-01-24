@@ -377,8 +377,7 @@ class Links extends React.Component {
                             </Typography>
                         </div>
                         <div>
-                            <MouseOverPopover tekst="A total evaluation of the links found in the email. The prosent is an average of all the attributes
-        where url encoding, redirection and duplication is rated less significant than link-sender relation and link security."/>
+                            <MouseOverPopover tekst="The final percentage evaluation for the 'links' section is determined primarily by three factors, the assessment of the link sender relation alongside an evaluation of the URL encoding and link security. This percentage reflects the average of all contributing attributes."/>
                         </div>
                     </div>
                     <div className={classes.prosentOnBar}>
@@ -406,8 +405,7 @@ class Links extends React.Component {
                                     </Typography>
                                 </div>
                                 <div>
-                                    <MouseOverPopover tekst="Legitimate websites usually have their company name in their display name, email domain and links.
-        If not it is probably someone trying to imitate the company."/>
+                                    <MouseOverPopover tekst="Typically legitimate businesses have their company name in their display name, email domain and associated links; the absence of this continuity could point to an attempt at fraud."/>
                                 </div>
                             </div>
                             <div  >
@@ -436,9 +434,7 @@ class Links extends React.Component {
                                     </Typography>
                                 </div>
                                 <div>
-                                    <MouseOverPopover tekst="URL encoding replaces unsafe ASCII characters with a % followed by two hexadecimal digits.
-        This makes it hard to read and can be used to hide the true location of a link. It is quite common both for legitimate and phishing email.
-        Therefore, the prosent bar is valued lower in the evaluation calculation."/>
+                                    <MouseOverPopover tekst="The technique of URL encoding replaces unsafe ASCII characters with a % symbol followed by two hexadecimal digits, this makes it harder to read and is often used to obscure the true location of the link. This technique is typical in both legitimate and illegitimate emails so its impact to the final evaluation is reduced."/>
                                 </div>
                             </div>
                             <div>
@@ -455,9 +451,7 @@ class Links extends React.Component {
                                     </Typography>
                                 </div>
                                 <div>
-                                    <MouseOverPopover tekst="Hypertext Transfer Protocol Secure (HTTPS) is an extension of the Hypertext Transfer Protocol (HTTP). 
-        It is used for secure communication over a computer network, and is widely used on the Internet. 
-        If a link does not use https, it is seen as unsafe."/>
+                                    <MouseOverPopover tekst="Hypertext Transfer Protocol Secure (HTTPS) is an extension of the Hypertext Transfer Protocol (HTTP). It is used to secure communications over computer networks and is commonplace in most internet domains. The absence of HTTPS is a security vulnerability and will be factored into the final evaluation."/>
                                 </div>
                             </div>
                             <div  >
@@ -474,8 +468,7 @@ class Links extends React.Component {
                                     </Typography>
                                 </div>
                                 <div>
-                                    <MouseOverPopover tekst="Some links contains redirection. 
-        This means that instead of the link taking you to a legitimate webpage, the link redirects to somewhere else."/>
+                                    <MouseOverPopover tekst="Link redirecting is when a user is sent to a web address different to the initial link that they interacted with. This technique can be used legitimately but is still a security concern and will be factored into the final evaluation."/>
                                 </div>
                             </div>
                             <div  >
@@ -493,9 +486,7 @@ class Links extends React.Component {
                                     </Typography>
                                 </div>
                                 <div>
-                                    <MouseOverPopover tekst="Most phishing emails will contain duplications of a url link.
-         This is sometimes the scenario for legitimate emails too.
-         Therefore, the prosent bar is valued lower in the evaluation calculation."/>
+                                    <MouseOverPopover tekst="It is common for both illegitimate and legitimate emails to contain duplications of a single URL link. Therefore, this factor's impact on the final evaluation is reduced."/>
                                 </div>
                             </div>
                             <div >

@@ -206,8 +206,7 @@ class Attachments extends React.Component{
                             </Typography>
                         </div>
                         <div>
-                            <MouseOverPopover tekst="A total evaluation of the attributes found in email attachments.
-            The score is an average of the attributes."/>
+                            <MouseOverPopover tekst="The final percentage evaluation for the 'attachments' section is determined by the assessment of the content contained within the emails attachments."/>
                         </div>
                     </div>
 

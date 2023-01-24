@@ -274,8 +274,7 @@ class Content extends React.Component {
                             </Typography>
                         </div>
                         <div>
-                            <MouseOverPopover tekst="A total evaluation of the attributes found in email content.
-            The score is an average of the attributes."/>
+                            <MouseOverPopover tekst="The final percentage evaluation for the 'content' section is determined primarily by two factors, the assessment of the receiver relation alongside an evaluation of included text. This percentage reflects the average of all contributing attributes."/>
                         </div>
                     </div>
                     <div className={classes.prosentOnBar}>
@@ -306,8 +305,7 @@ class Content extends React.Component {
                                 </Typography>
                             </div>
                             <div>
-                                <MouseOverPopover tekst="Phishing emails are usually anonymous and does not address the receiver. 
-            They usually do not contain any proof of relation such as knowing the name of the receiver."/>
+                                    <MouseOverPopover tekst="Any relation to the email receiver will be analysed and considered in the final evaluation of the email content. Typically phishing emails do not have any direct reference to the receiver so this factor will be flagged as a consideration."/>
                             </div>
                         </div>
                          
@@ -323,9 +321,7 @@ class Content extends React.Component {
                                 </Typography>
                             </div>
                             <div>
-                                <MouseOverPopover className={classes.wrapIcon} tekst="It is very common that emails containing certain words related
-             to urgency, fear, username/password changes or
-             economic loss/gain is some sort phishing email trying to get your personal information."/>
+                                    <MouseOverPopover className={classes.wrapIcon} tekst="It is not uncommon for emails linked with phishing attacks to contain certain inflammatory vocabulary related to urgency, fear, username/password changes or economic loss/gain. The ‘Phish Alert’ security plugin contains a system for identifying this contentious language; this identification will impact the final percentage evaluation."/>
                             </div>
                         </div>
                         <p>Phishing words found:</p>

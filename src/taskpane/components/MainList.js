@@ -265,9 +265,8 @@ class MainList extends React.Component{
             </Typography>
             </div>
             <div>
-                      <MouseOverPopover className={classes.wrapIcon} tekst="Shows evaluation of key attributes found in an email. Each attribute is evaluated through a percent bar.
-            Lower percents indicates higher likelyhood of email phishing.
-            The total evaluation percent represent a guidance for awareness of the email content."/>
+                      <MouseOverPopover className={classes.wrapIcon} tekst="The overall email trust score is determined by a range of contributing factors related to the possibility of a phishing attack; The nature of the sender, email content (including links) and attachments are all key contributing factors considered when the Phish Alert system evaluates the safety of an email. Each of these factors will influence the final score with varying severity depending on their importance to the evaluation process."
+                       />
             </div>
               </div>
                

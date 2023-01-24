@@ -286,8 +286,7 @@ class Sender extends React.Component{
                             </Typography>
                         </div>
                         <div>
-                            <MouseOverPopover tekst="A total evaluation of the sender information found in the email. 
-            The percent is an average of all the attributes."/>
+                            <MouseOverPopover tekst="The final percentage evaluation for the 'sender' section is determined primarily by two factors, the assessment of the sender persona alongside the assessment of the sender IP address. This percentage reflects the average of all contributing attributes."/>
                         </div>
                     </div>
                     <div className={classes.prosentOnBar}>
@@ -316,8 +315,7 @@ class Sender extends React.Component{
                                 </Typography>
                             </div>
                             <div>
-                                <MouseOverPopover tekst="Compares the senders display name with their email address and gives a score based on
-            similarities in words/domain/name. Professional companies usually includes company/employee names in their email addresses."/>
+                                    <MouseOverPopover tekst="The sender persona is evaluated by comparing the sender's display name with their corresponding email address, the final score is calculated based on similarities between aspects of these two names (e.g., domain/words/name). Enterprise emails typically include identifying information and this can be an angle for determining legitimacy."/>
                             </div>
                         </div>
                          
@@ -339,9 +337,7 @@ class Sender extends React.Component{
                                 </Typography>
                             </div>
                             <div>
-                                <MouseOverPopover tekst="Click the button to check if the IP-address of the email sender is blacklisted.
-            This will open a new window which shows multiple databases the IP address is checked against.
-            More than two listed(red alerts) is considered bad."/>
+                                    <MouseOverPopover tekst="Use the button below to check whether or not the IP-address of the sender is blacklisted by the system; clicking the button will display a window which presents a number of databases that are cross-referenced with the sender IP-address. A detection of more than two listed red alerts is considered negative."/>
                             </div>
                         </div>
                         <p>Sender's IP: <b>{this.state.ipAdr}</b></p>
