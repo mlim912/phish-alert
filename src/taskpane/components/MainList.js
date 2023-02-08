@@ -210,7 +210,7 @@ class MainList extends React.Component{
       var numB = parseInt(b);
       var numC = parseInt(c);
       var numD = parseInt(d);
-      var value = ((numA + numB + numC + numD) / 4);
+      var value = (numA*10 + numB*20 + numC*40 + numD*30)/100;
       let self = this;
       var roundedScore = value.toFixed(0);
       self.setState({
@@ -239,7 +239,7 @@ class MainList extends React.Component{
             elem1.style.borderLeft = '4px solid red';
             elem1.textContent = 'We do NOT trust the safety of this email.';
 
-          this.setState({safetyType: 'NO'}); 
+          this.setState({safetyType: 'NOT SAFE'}); 
         } else if(width > 75){
             elem.style.backgroundColor = "#009688";
             elem1.style.backgroundColor = "#e8f5e9";
@@ -249,7 +249,7 @@ class MainList extends React.Component{
             elem1.style.position = 'relative';
             elem1.style.borderLeft = '4px solid green';
             elem1.innerHTML = '<div>We trust the safety of this email.</div>' 
-          this.setState({safetyType: 'HIGH'});
+          this.setState({safetyType: 'SAFE'});
       }
     }  
 
@@ -328,7 +328,7 @@ class MainList extends React.Component{
                   </div>
                 </div>
                 <div className={classes.safetyBar}>
-                  <div className={classes.safetyLevel} id="safetyLevel"><p><b>{this.state.safetyType} SAFETY</b></p></div>
+                  <div className={classes.safetyLevel} id="safetyLevel"><p><b>{this.state.safetyType}</b></p></div>
                 </div>
               </div> 
          

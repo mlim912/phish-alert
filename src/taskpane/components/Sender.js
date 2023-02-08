@@ -282,7 +282,7 @@ class Sender extends React.Component{
                     <div className={classes.flexContainer}>
                         <div>
                             <Typography variant="h6" component="h3">
-                                Evaluation
+                                Sender Trust Score
                             </Typography>
                         </div>
                         <div>
@@ -292,9 +292,7 @@ class Sender extends React.Component{
                     <div className={classes.prosentOnBar}>
                         <div className={classes.bar} id="bar_4"><p><b>{this.state.totVal}%</b></p></div>
                     </div>
-                    <p>
-                        Total evaluation in prosent
-                    </p>
+                    
                 </div>
 
                 <div className={classes.card}>

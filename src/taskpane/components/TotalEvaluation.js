@@ -56,7 +56,7 @@ class TotalEvaluation extends React.Component{
         super(props);
         this.state = {
           high: 76, 
-          low: 59, 
+          low: 30, 
         };
     }
 
@@ -75,9 +75,9 @@ class TotalEvaluation extends React.Component{
         var elem = document.getElementById(text);
         var width = c;
         elem.style.width = "100%";
-          if(width <= 75){
+          if(width <= 50){
               elem.style.backgroundColor = "#FF5555";
-          } else if(width > 75){
+          } else if(width > 50){
             elem.style.backgroundColor = "#7ED957";
         }
       }
@@ -94,11 +94,11 @@ class TotalEvaluation extends React.Component{
         <div className={classes.flexContainer}>
             <div>
             <Typography variant="h6" component="h3">
-            High safety
+            High risk
             </Typography>
             </div>
             <div>
-            <MouseOverPopover tekst="High safety do not mean that the email is 100% safe. There can be cases of false positives
+            <MouseOverPopover tekst="Low rish do not mean that the email is 100% safe. There can be cases of false positives
             or false negatives. The ratings are ment as a guidance, making users
             more observant and cautious in their email interactions."/>
             </div>
@@ -107,7 +107,7 @@ class TotalEvaluation extends React.Component{
               <div className={classes.bar} id="bar_1"><p><b>{this.state.high}%</b></p></div>
             </div>
             <p>
-              A percent rating between 76-100 is considere a legitimate email with high safety. 
+              A percent rating between 51-100 is considere a legitimate email with low risk. 
               This means that the email may not be a phishing email.
             </p>
         </Paper> 
@@ -115,11 +115,11 @@ class TotalEvaluation extends React.Component{
         <div className={classes.flexContainer}>
             <div>
             <Typography variant="h6" component="h3">
-            Low safety
+            Low risk
             </Typography>
             </div>
             <div>
-            <MouseOverPopover tekst="Low safety means that many email attributes did not meet the expected critierias.
+            <MouseOverPopover tekst="High risk means that many email attributes did not meet the expected critierias.
             These criterias should be checked and considered."/>
             </div>
             </div>
@@ -127,7 +127,7 @@ class TotalEvaluation extends React.Component{
               <div className={classes.bar} id="bar_2"><p><b>{this.state.low}%</b></p></div>
             </div>
             <p>
-              A percent rating between 50-26 is considere to have low safety. 
+              A percent rating between 0-50 is considere to have high risk. 
               This means that the email is likely to be a phishing email, and should be looked through closely.
             </p>
         </Paper>

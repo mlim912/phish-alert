@@ -373,7 +373,7 @@ class Links extends React.Component {
                     <div className={classes.flexContainer}>
                         <div>
                             <Typography variant="h6" component="h3">
-                                Evaluation
+                                Links Trust Score
                             </Typography>
                         </div>
                         <div>
@@ -383,9 +383,7 @@ class Links extends React.Component {
                     <div className={classes.prosentOnBar}>
                         <div className={classes.bar} id="bar_6"><p><b>{this.state.totVal}%</b></p></div>
                     </div>
-                    <p>
-                        Total evaluation of link(s) in this email
-                    </p>
+                    
                 </div>
 
                 <div className={classes.card}>

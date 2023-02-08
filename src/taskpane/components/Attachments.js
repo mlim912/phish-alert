@@ -201,12 +201,12 @@ class Attachments extends React.Component{
                 <div className={classes.card}>
                     <div className={classes.flexContainer}>
                         <div>
-                            <Typography variant="h6" component="h3">
-                                Evaluation
+                            <Typography variant="h6" component="h6" >
+                                Attachments Trust <br/>Score
                             </Typography>
                         </div>
                         <div>
-                            <MouseOverPopover tekst="The final percentage evaluation for the 'attachments' section is determined by the assessment of the content contained within the emails attachments."/>
+                            <MouseOverPopover tekst="The final percentage trust score for the 'attachments' section is determined by the assessment of the content contained within the emails attachments."/>
                         </div>
                     </div>
 
