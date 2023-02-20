@@ -12,7 +12,7 @@ function notification() {
     
      mailboxItem.notificationMessages.addAsync('NoSend', { type: 'errorMessage', message: 'Blocked words have been found in the body of this email. Please remove them.' }); 
 }
-
+ 
 export default class App extends React.Component {
   constructor(props, context) {
     super(props, context);

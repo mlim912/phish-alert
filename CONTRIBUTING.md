@@ -21,7 +21,7 @@ In general we want our code comments to follow these guidelines:
 - Code added from Stack Overflow, or any other source, is clearly attributed. 
 
 ### Fix open issues 
-
+ 
 Sometimes we get a lot of issues, and it can be hard to keep up. If you have a solution to an open issue that hasn't been addressed, fix the issue and then submit a pull request. 
 
 ### Add a new feature 

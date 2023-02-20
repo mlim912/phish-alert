@@ -26,7 +26,7 @@ module.exports = async (env, options)  => {
     resolve: {
       extensions: [".ts", ".tsx", ".html", ".js"]
     },
-    module: {
+    module: { 
         rules: [
             {
                 parser: {
