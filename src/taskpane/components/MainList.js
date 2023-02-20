@@ -229,7 +229,7 @@ class MainList extends React.Component{
       var width = c;
         elem.style.width = "100%";
         elem1.style.width = "100%";
-        if(width <= 75){
+        if(width < 75){
             elem.style.backgroundColor = "#e91e63";
             elem1.style.backgroundColor = "#ffebee";
             elem1.style.color = 'black';
@@ -240,7 +240,7 @@ class MainList extends React.Component{
             elem1.textContent = 'We do NOT trust the safety of this email.';
 
           this.setState({safetyType: 'NOT SAFE'}); 
-        } else if(width > 75){
+        } else if(width >= 75){
             elem.style.backgroundColor = "#009688";
             elem1.style.backgroundColor = "#e8f5e9";
             elem1.style.color = 'black';

@@ -119,7 +119,7 @@ class Attachments extends React.Component{
 
                 // Configure API key authorization: Apikey
                 var Apikey = defaultClient.authentications['Apikey'];
-                Apikey.apiKey = "2c2b2abe-4a5d-4719-bb4e-c71e25f8eb34"
+                Apikey.apiKey = "ff57012e-deac-45d2-9758-4a61951cd780"
                 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
                 //Apikey.apiKeyPrefix['Apikey'] = "Token"
                  
@@ -165,9 +165,9 @@ class Attachments extends React.Component{
         var elem = document.getElementById(text);
         var width = c;
       elem.style.width = "100%";
-          if(width <= 75){
+          if(width < 75){
               elem.style.backgroundColor = "#e91e63"; 
-          } else if(width > 75){
+          } else if(width >= 75){
               elem.style.backgroundColor = "#009688";
         }
       }

@@ -186,12 +186,12 @@ class Sender extends React.Component{
           senderScore: score,
           nameSimilarity: 'Name found in email',
         })
-      }else if(score < 100 && score >= 75){
+      }else if(score < 100 && score > 75){
         self.setState({
           senderScore: score,
           nameSimilarity: 'Most parts of name found in email',
         })
-      }else if(score < 75 && score >= 50){
+      }else if(score <= 75 && score >= 50){
         self.setState({
           senderScore: score,
           nameSimilarity: 'Parts of name found in email',

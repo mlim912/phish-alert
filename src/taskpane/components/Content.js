@@ -225,9 +225,9 @@ class Content extends React.Component {
       var elem = document.getElementById(text);
       var width = c;
       elem.style.width = "100%";
-        if(width <= 75){
+        if(width < 75){
             elem.style.backgroundColor = "#e91e63"; 
-        } else if(width > 75){
+        } else if(width >= 75){
             elem.style.backgroundColor = "#009688";
       }
     }

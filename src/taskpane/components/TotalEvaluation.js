@@ -75,9 +75,9 @@ class TotalEvaluation extends React.Component{
         var elem = document.getElementById(text);
         var width = c;
         elem.style.width = "100%";
-          if(width <= 75){
+          if(width < 75){
               elem.style.backgroundColor = "#FF5555";
-          } else if(width > 75){
+          } else if(width >= 75){
             elem.style.backgroundColor = "#7ED957";
         }
       }
